@@ -51,36 +51,23 @@
         justify-content: center;
         border-radius: 12px;
         margin-bottom: 40px;
-        overflow: hidden;
+        overflow: visible;
         position: relative;
-        animation: bannerFloat 3s ease-in-out infinite;
         border: 3px solid rgba(255, 255, 255, 0.1);
+        animation: slideInFromTop 0.8s ease-out forwards;
+        cursor: pointer;
+        user-select: none;
       }
 
-      @keyframes bannerFloat {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-5px); }
-      }
-
-      .banner::after {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: linear-gradient(
-          45deg,
-          transparent,
-          rgba(255, 204, 0, 0.1),
-          transparent
-        );
-        animation: bannerShine 3s linear infinite;
-      }
-
-      @keyframes bannerShine {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+      @keyframes slideInFromTop {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .banner img {
@@ -90,12 +77,26 @@
         object-position: center;
         position: relative;
         z-index: 1;
-        animation: imageZoom 20s ease-in-out infinite;
       }
 
-      @keyframes imageZoom {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
+      /* Party celebration effects */
+      .celebration-emoji {
+        position: fixed;
+        font-size: 2rem;
+        pointer-events: none;
+        z-index: 9999;
+        animation: fallDown 4.5s ease-in forwards;
+      }
+
+      @keyframes fallDown {
+        0% {
+          opacity: 1;
+          transform: translateY(0) translateX(0) rotate(0deg);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(800px) translateX(var(--drift, 0px)) rotate(720deg);
+        }
       }
 
       /* Card Grid */
@@ -357,6 +358,7 @@
         margin-top: 80px;
         margin-left: -20px;
         margin-right: -20px;
+        margin-bottom: -20px;
         background: #000;
         border-top: 3px solid rgba(255, 255, 255, 0.1);
         color: #888;
@@ -495,6 +497,39 @@
         75% { transform: translateY(-25px) translateX(5px); }
       }
     </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const banner = document.querySelector('.banner');
+        const emojis = ['🎉', '🎊', '🎈', '🎁', '✨'];
+        
+        banner.addEventListener('click', function() {
+          // Create 20 random emojis
+          for (let i = 0; i < 20; i++) {
+            setTimeout(() => {
+              const emoji = document.createElement('div');
+              emoji.className = 'celebration-emoji';
+              emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+              
+              // Get banner position relative to viewport
+              const bannerRect = banner.getBoundingClientRect();
+              emoji.style.left = (bannerRect.left + Math.random() * bannerRect.width) + 'px';
+              emoji.style.top = bannerRect.top + 'px';
+              
+              // Random horizontal drift
+              const drift = (Math.random() - 0.5) * 100;
+              emoji.style.setProperty('--drift', drift + 'px');
+              
+              document.body.appendChild(emoji);
+              
+              // Remove emoji after animation
+              setTimeout(() => {
+                emoji.remove();
+              }, 4500);
+            }, i * 50); // Stagger the emoji creation
+          }
+        });
+      });
+    </script>
   </head>
   <body>
     <div class="container">
