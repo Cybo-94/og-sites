@@ -410,6 +410,62 @@
         }
       }
 
+      /* Touch device optimizations - disable hover effects on touch devices */
+      @media (hover: none) and (pointer: coarse) {
+        .card:hover,
+        .spotify-section:hover {
+          transform: none;
+          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+          border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .card::before,
+        .spotify-section::before {
+          display: none;
+        }
+
+        .social-btn:hover {
+          transform: none;
+          box-shadow: none;
+        }
+
+        .social-btn::before {
+          display: none;
+        }
+
+        .banner::after {
+          display: none;
+        }
+
+        .spotify-embed:hover {
+          box-shadow: 0 5px 20px rgba(29, 185, 84, 0.2);
+        }
+
+        /* Add active state for touch feedback */
+        .card:active {
+          transform: scale(0.98);
+          transition: transform 0.1s ease;
+        }
+
+        .social-btn:active {
+          transform: scale(0.95);
+          transition: transform 0.1s ease;
+        }
+
+        .social-btn::after {
+          display: none;
+        }
+      }
+
+      /* Enhanced hover effects for devices with precise pointers (desktop) */
+      @media (hover: hover) and (pointer: fine) {
+        .card,
+        .spotify-section,
+        .social-btn {
+          will-change: transform;
+        }
+      }
+
       /* Scroll animations */
       @keyframes fadeInUp {
         from {
