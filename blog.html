@@ -4,26 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CYBO — Blog</title>
-  <link rel="icon" type="image/png" href="https://imgur.com/dqV1mDV.png">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://gsap.js.org/get-started-gsap.html" onload="gsap.registerPlugin(ScrollTrigger)"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <link rel="stylesheet" href="blog.css">
 </head>
 <body>
-  <div class="min-h-screen bg-[#080909] animated-gradient-bg selection:bg-cyan-500/30 selection:text-white">
-    
+  <div class="min-h-screen bg-[#080909]">
     <!-- TOP NAVIGATION BAR -->
     <header class="topbar fixed top-0 left-0 right-0 z-40">
       <div class="mx-auto flex h-[76px] max-w-[1440px] items-center justify-between gap-5 px-5 md:px-10">
         <!-- LEFT: Back Button + Logo -->
         <div class="flex min-w-0 items-center gap-3">
-          <a id="back-home-link" href="index.html" class="back-btn-cta inline-flex h-11 items-center gap-2 rounded-lg border border-white/15 bg-white/[.04] px-4 text-sm font-semibold text-white transition-all hover:border-cyan-200/70 hover:bg-white/10" aria-label="Back to CYBO home">
+          <a id="back-home-link" href="index.html" class="inline-flex h-11 items-center gap-2 rounded-lg border border-white/15 bg-white/[.04] px-4 text-sm font-semibold text-white transition hover:border-cyan-200/70 hover:bg-white/10" aria-label="Back to CYBO home">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             <span>Back</span>
           </a>
-          <img class="brand-logo h-11 w-11 rounded-lg object-contain" src="https://imgur.com/dqV1mDV.png" alt="CYBO logo">
+          <img class="brand-logo h-11 w-11 rounded-lg object-contain" src="https://i.imgur.com/nrOMBEp.png" alt="CYBO logo">
         </div>
         
         <!-- RIGHT: Search + Filter -->
@@ -67,24 +61,17 @@
       <p id="empty-state" class="hidden py-20 text-center text-sm text-white/45">No notes match that search.</p>
     </main>
 
-    <!-- FOOTER (EXACT COPY FROM MAIN PAGE) -->
-    <footer class="footer-full py-12 px-10 md:px-20 border-t border-white/10 bg-black">
-      <div class="max-w-[1440px] mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-          <div class="flex flex-col items-center md:items-start text-center md:text-left">
-            <h3 class="font-display font-black text-white text-2xl md:text-3xl mb-2 tracking-tighter">
-              Coolest Young Brain Online
-            </h3>
-            <p class="text-gray-400 max-w-sm text-sm">Pioneering the intersection of physics, technology, and exploration.</p>
-          </div>
-          <div class="flex flex-col items-center md:items-end text-center md:text-right">
-            <p class="text-[10px] uppercase font-bold tracking-[0.2em] text-gray-500 mb-2">Direct Business Contact</p>
-            <a href="mailto:cybo94.buisness@gmail.com" class="text-xl md:text-3xl font-display font-black text-cyan-400 hover:text-cyan-300 transition-colors">cybo94.buisness@gmail.com</a>
-          </div>
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-[#0d0f0f] px-5 py-10 md:px-10">
+      <div class="mx-auto flex max-w-[1440px] flex-col justify-between gap-6 md:flex-row md:items-center">
+        <div>
+          <p class="orbitron text-sm font-bold tracking-[.15em]">CYBO<span class="text-[#8ef2ff]">β</span></p>
+          <p class="mt-2 text-xs text-white/40">Curiosity, built in public.</p>
         </div>
-        <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 text-gray-600 text-[10px] md:text-xs gap-4 uppercase tracking-widest">
-          <p>© 2025 CYBO. ALL RIGHTS RESERVED.</p>
-          <p class="hidden md:block">CRAFTED IN INDIA WITH CURIOSITY</p>
+        <div class="flex gap-5 text-xs text-white/45">
+          <a id="footer-home-link" href="index.html" class="transition hover:text-white">Home</a>
+          <a id="footer-contact-link" href="mailto:hello@cybo.dev" class="transition hover:text-white">Connect</a>
+          <span>© 2026 CYBO</span>
         </div>
       </div>
     </footer>
@@ -131,6 +118,7 @@
     </div>
   </div>
 
+  <script src="blogs.js"></script>
   <script src="blog.js"></script>
 </body>
 </html>
