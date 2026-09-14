@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,900&f[]=satoshi@400,500,700&display=swap');
 
 :root {
   --ink: #080909;
@@ -21,41 +20,11 @@ body {
   margin: 0;
   background: var(--ink);
   color: #fff;
-  font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .orbitron {
   font-family: 'Orbitron', sans-serif;
-}
-
-/* ANIMATED GRADIENT BACKGROUND */
-.animated-gradient-bg {
-  background: linear-gradient(-45deg, #050505, #0a0f2c, #1a0033, #050505);
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
-  position: relative;
-}
-
-.animated-gradient-bg::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    radial-gradient(circle at 10% 20%, rgba(0, 242, 255, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(255, 251, 0, 0.03) 0%, transparent 60%);
-  background-attachment: fixed;
-  pointer-events: none;
-  z-index: -1;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 /* TOP & SUB BARS */
@@ -72,41 +41,6 @@ body {
 .glass {
   background: rgba(255, 255, 255, 0.045);
   border: 1px solid var(--line);
-}
-
-/* BACK BUTTON HOVER - BookCallCta STYLE */
-.back-btn-cta {
-  position: relative;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.back-btn-cta::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 50% 50%, rgba(142, 242, 255, 0.3), transparent);
-  transition: left 0.5s ease-out;
-  pointer-events: none;
-}
-
-.back-btn-cta:hover::before {
-  left: 100%;
-}
-
-.back-btn-cta:hover {
-  border-color: rgba(142, 242, 255, 0.7);
-  background: rgba(142, 242, 255, 0.08);
-  box-shadow: 0 0 20px rgba(142, 242, 255, 0.3);
-  transform: translateY(-2px);
-}
-
-.back-btn-cta:active {
-  transform: scale(0.98);
 }
 
 /* SEARCH ANIMATION */
@@ -132,29 +66,12 @@ body {
   margin: 0 0 24px 0;
 }
 
-/* BLOG CARDS - MASONRY ENTRANCE ANIMATION */
+/* BLOG CARDS */
 .blog-card {
   transition: transform 0.28s ease, box-shadow 0.28s ease, filter 0.28s ease;
   cursor: pointer;
   border-radius: 1rem;
   padding: 1.5rem;
-}
-
-.blog-card {
-  animation: masonryEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-
-@keyframes masonryEntrance {
-  from {
-    opacity: 0;
-    transform: translateY(40px) scale(0.9);
-    filter: blur(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
 }
 
 .blog-card:hover {
@@ -163,7 +80,7 @@ body {
   filter: saturate(1.08);
 }
 
-/* MODAL STYLES */
+/* ANIMATIONS */
 .modal-backdrop {
   background: rgba(0, 0, 0, 0.82);
   backdrop-filter: blur(10px);
@@ -211,22 +128,6 @@ body {
     opacity: 1;
     transform: none;
   }
-}
-
-/* FOOTER STYLING */
-.footer-full {
-  background: #000000;
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-}
-
-.font-display {
-  font-family: 'Cabinet Grotesk', sans-serif;
-  letter-spacing: -0.02em;
 }
 
 /* RESPONSIVE */
