@@ -1,4 +1,140 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CYBO — Blog</title>
+  <link rel="icon" type="image/png" href="https://imgur.com/dqV1mDV.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://gsap.js.org/get-started-gsap.html" onload="gsap.registerPlugin(ScrollTrigger)"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+  <div class="min-h-screen bg-[#080909] animated-gradient-bg selection:bg-cyan-500/30 selection:text-white">
+    
+    <!-- TOP NAVIGATION BAR -->
+    <header class="topbar fixed top-0 left-0 right-0 z-40">
+      <div class="mx-auto flex h-[76px] max-w-[1440px] items-center justify-between gap-5 px-5 md:px-10">
+        <!-- LEFT: Back Button + Logo -->
+        <div class="flex min-w-0 items-center gap-3">
+          <a id="back-home-link" href="index.html" class="back-btn-cta inline-flex h-11 items-center gap-2 rounded-lg border border-white/15 bg-white/[.04] px-4 text-sm font-semibold text-white transition-all hover:border-cyan-200/70 hover:bg-white/10" aria-label="Back to CYBO home">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            <span>Back</span>
+          </a>
+          <img class="brand-logo h-11 w-11 rounded-lg object-contain" src="https://imgur.com/dqV1mDV.png" alt="CYBO logo">
+        </div>
+        
+        <!-- RIGHT: Search + Filter -->
+        <div class="top-controls flex items-center gap-3">
+          <label class="search-shell glass flex h-11 items-center gap-2 rounded-lg px-3" for="search-input">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white/55 shrink-0"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+            <input id="search-input" class="desktop-search min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/40" type="search" placeholder="Search ideas..." autocomplete="off">
+          </label>
+          <button id="clear-search" class="hidden h-11 w-11 items-center justify-center rounded-lg border border-white/10 text-white/55 transition hover:bg-white/10" aria-label="Clear search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- CATEGORY FILTER + SORT BAR -->
+    <div class="subbar fixed left-0 right-0 top-[76px] z-30">
+      <div class="mx-auto flex max-w-[1440px] items-center gap-5 overflow-x-auto px-5 py-3 md:px-10">
+        <div id="categories" class="flex shrink-0 items-center gap-2"></div>
+        <div class="ml-auto flex shrink-0 items-center gap-2 border-l border-white/10 pl-4">
+          <span class="hidden text-[10px] font-bold uppercase tracking-[.18em] text-white/35 sm:inline">Sort</span>
+          <select id="sort-select" class="rounded-md border border-white/10 bg-[#171919] px-3 py-2 text-xs font-semibold text-white outline-none focus:border-cyan-200/70">
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="mx-auto max-w-[1440px] px-5 pb-24 pt-[154px] md:px-10">
+      <!-- HEADER SECTION -->
+      <section class="mb-12 max-w-3xl">
+        <p class="orbitron mb-4 text-[11px] font-semibold uppercase tracking-[.28em] text-[#8ef2ff]">CYBO / Notes from the edge</p>
+        <h1 class="orbitron text-4xl font-bold tracking-[-.05em] text-white md:text-6xl">Ideas in motion<span class="text-[#8ef2ff]">.</span></h1>
+        <p class="mt-5 max-w-xl text-base leading-7 text-white/55">A small archive of observations, experiments, and questions worth carrying forward.</p>
+      </section>
+
+      <!-- BLOG CARDS GRID (MASONRY) -->
+      <div id="blog-grid" class="masonry" aria-live="polite"></div>
+      <p id="empty-state" class="hidden py-20 text-center text-sm text-white/45">No notes match that search.</p>
+    </main>
+
+    <!-- FOOTER (EXACT COPY FROM MAIN PAGE) -->
+    <footer class="footer-full py-12 px-10 md:px-20 border-t border-white/10 bg-black">
+      <div class="max-w-[1440px] mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          <div class="flex flex-col items-center md:items-start text-center md:text-left">
+            <h3 class="font-display font-black text-white text-2xl md:text-3xl mb-2 tracking-tighter">
+              Coolest Young Brain Online
+            </h3>
+            <p class="text-gray-400 max-w-sm text-sm">Pioneering the intersection of physics, technology, and exploration.</p>
+          </div>
+          <div class="flex flex-col items-center md:items-end text-center md:text-right">
+            <p class="text-[10px] uppercase font-bold tracking-[0.2em] text-gray-500 mb-2">Direct Business Contact</p>
+            <a href="mailto:cybo94.buisness@gmail.com" class="text-xl md:text-3xl font-display font-black text-cyan-400 hover:text-cyan-300 transition-colors">cybo94.buisness@gmail.com</a>
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 text-gray-600 text-[10px] md:text-xs gap-4 uppercase tracking-widest">
+          <p>© 2025 CYBO. ALL RIGHTS RESERVED.</p>
+          <p class="hidden md:block">CRAFTED IN INDIA WITH CURIOSITY</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ARTICLE MODAL -->
+    <div id="modal" class="modal-backdrop fixed inset-0 z-50 hidden overflow-y-auto p-4 md:p-10" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-panel mx-auto my-4 max-w-6xl overflow-hidden rounded-2xl border border-white/15 bg-[#151817] shadow-2xl">
+        <!-- MODAL HEADER -->
+        <div class="flex items-center justify-between border-b border-black/10 px-5 py-4">
+          <span class="orbitron text-[10px] font-bold uppercase tracking-[.2em] text-white/45">Reading room</span>
+          <button id="close-modal" class="flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 text-white transition hover:bg-white/20" aria-label="Close article">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <!-- MODAL CONTENT GRID -->
+        <div class="modal-grid grid grid-cols-[minmax(0,1fr)_310px] gap-0">
+          <!-- LEFT: ARTICLE -->
+          <article id="article-body" class="modal-article p-6 md:p-12"></article>
+
+          <!-- RIGHT: SIDEBAR -->
+          <aside class="border-l border-black/10 bg-black/[.13] p-6 md:p-8">
+            <!-- VIDEO SECTION -->
+            <section id="video-section">
+              <h2 class="orbitron text-sm font-bold uppercase leading-6">Watch the Idea<br>in Motion</h2>
+              <a id="video-link" class="group relative mt-5 block overflow-hidden rounded-xl border border-white/15" target="_blank" rel="noopener noreferrer">
+                <img id="video-thumb" class="aspect-video w-full object-cover transition duration-300 group-hover:scale-105" alt="YouTube video thumbnail">
+                <span class="absolute inset-0 flex items-center justify-center bg-black/20">
+                  <span class="flex h-12 w-12 items-center justify-center rounded-full bg-white text-black">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                  </span>
+                </span>
+              </a>
+            </section>
+
+            <!-- SOURCES SECTION -->
+            <section id="sources-section" class="mt-10">
+              <h2 class="orbitron text-sm font-bold uppercase">Sources</h2>
+              <div id="sources-list" class="mt-4 space-y-2"></div>
+            </section>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="blogs.js"></script>
+  <script src="blog.js"></script>
+</body>
+</html><!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
