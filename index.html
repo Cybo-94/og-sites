@@ -1,17 +1,117 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
+<html lang="en" class="scroll-smooth"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CYBO | Coolest Young Brain Online</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <link rel="icon" type="image/png" href="https://i.imgur.com/nrOMBEp.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="https://i.imgur.com/dqV1mDV.png">
+    <style>
+        @import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,900&f[]=satoshi@400,500,700&f[]=crimson-pro@600&display=swap');
+
+        :root {
+            --brand-cyan: #00f2ff;
+            --brand-magenta: #ff00ff;
+            --brand-yellow: #fffb00;
+            --bg-dark: #050505;
+        }
+
+        body {
+            font-family: 'Satoshi', sans-serif;
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .font-display {
+            font-family: 'Cabinet Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-8px);
+        }
+
+        .gradient-text-cyan {
+            background: linear-gradient(to right, var(--brand-cyan), #00aaff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .splash-gradient {
+            background: linear-gradient(to bottom, #FF0000, #FF1493, #9400D3, #0000FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .mesh-bg {
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 242, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255, 251, 0, 0.05) 0%, transparent 60%);
+            background-attachment: fixed;
+        }
+
+        /* Fix for top-nav overlap */
+        section[id] {
+            scroll-margin-top: 100px;
+        }
+
+        .footer-full {
+            background: #000000;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
+
+        .hero-glow {
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: pulse 8s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.4; }
+            100% { transform: scale(1.2); opacity: 0.7; }
+        }
+
+        @view-transition {
+            navigation: auto;
+        }
+
+        .mobile-splash-active {
+            overflow: hidden !important;
+            height: 100vh;
+        }
+    </style>
 </head>
 <body class="custom-scrollbar">
 
-    <!-- MOBILE SPLASH SCREEN -->
+    <!-- 
+    ========================================================================
+    MOBILE SPLASH SCREEN
+    Visible only on mobile devices until "Continue" is clicked
+    ========================================================================
+    -->
+
+    <!-- 
+    ========================================================================
+    MOBILE SPLASH SCREEN
+    Visible only on mobile devices until "Continue" is clicked
+    ========================================================================
+    -->
     <div id="mobile-splash" class="fixed inset-0 z-[100] bg-black md:hidden flex flex-col items-center justify-center px-6">
         <div class="flex flex-col items-center text-center mb-20">
             <h1 class="font-display font-black text-6xl leading-[1.1] splash-gradient uppercase">
@@ -25,28 +125,41 @@
 
     <div id="main-wrapper" class="min-h-screen mesh-bg selection:bg-cyan-500/30 selection:text-white opacity-0 md:opacity-100 transition-opacity duration-1000">
         
-        <!-- DESKTOP NAVIGATION BAR -->
+        <!-- 
+        ========================================================================
+        DESKTOP NAVIGATION BAR
+        Hidden on mobile
+        ========================================================================
+        -->
         <nav class="fixed top-0 left-0 w-full z-50 py-6 px-10 hidden md:flex justify-between items-center glass-card border-none rounded-none" style="padding: 24px 40px;">
             <div class="flex items-center gap-2">
-                <img src="https://i.imgur.com/nrOMBEp.png" class="w-10 h-10 rounded-lg shadow-lg shadow-cyan-500/20" alt="CYBO Logo">
-                <span class="font-display font-black text-2xl tracking-tighter flex items-center gap-2" style="width: 65px;">CYBO<span class="text-[#0066CC] text-2xl font-serif italic leading-none ml-0.5" style="font-family: Satoshi; color: rgb(255, 255, 255); font-weight: 700; font-size: 15px; margin: 0px;">β</span></span>
-            </div>
-            <div class="flex items-center gap-8 font-medium text-sm tracking-wider uppercase opacity-80">
-                <a href="#about" id="nav-about-link" class="hover:text-cyan-400 transition-colors">About</a>
-                <a href="#hobbies" id="nav-hobbies-link" class="hover:text-magenta-400 transition-colors">Hobbies</a>
-                <a href="#favorites" id="nav-favorites-link" class="hover:text-yellow-400 transition-colors">Favorites</a>
-                <a href="#connect" id="nav-connect-link" class="bg-white text-black px-6 py-2.5 rounded-full hover:bg-cyan-400 hover:text-black transition-all" style="padding: 0px; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);">Connect</a>
+                <!-- IMAGE: Brand Logo -->
+                <img src="https://i.imgur.com/dqV1mDV.png" class="w-10 h-10 rounded-lg shadow-lg shadow-cyan-500/20" alt="CYBO Logo">
+                
+            <span class="font-display font-black text-2xl tracking-tighter flex items-center gap-2" style="width: 65px;">CYBO<span class="text-[#0066CC] text-2xl font-serif italic leading-none ml-0.5" style="font-family: Satoshi; color: rgb(255, 255, 255); font-weight: 700; font-size: 15px; margin: 0px;">β</span></span></div>
+            <div class="flex items-center gap-8 font-medium text-sm tracking-wider uppercase opacity-90">
+                <a href="#about" id="nav-about-link" class="text-cyan-400 hover:text-cyan-300 transition-colors">About</a>
+                <a href="#hobbies" id="nav-hobbies-link" class="text-magenta-400 hover:text-fuchsia-300 transition-colors">Hobbies</a>
+                <a href="#favorites" id="nav-favorites-link" class="text-yellow-400 hover:text-yellow-300 transition-colors">Favorites</a>
+                <a href="https://cybo-94.github.io/blogs/" id="nav-blogs-link" class="text-green-400 hover:text-green-300 transition-colors">Blogs</a>
+                <a href="#connect" id="nav-connect-link" class="text-blue-400 hover:text-blue-300 transition-colors" style="padding: 0px; background-color: transparent;">Connect</a>
             </div>
         </nav>
 
         <main class="w-full px-6 md:px-20 pt-10 md:pt-32 pb-20">
             
-            <!-- DESKTOP HERO BANNER -->
+            <!-- 
+            ========================================================================
+            DESKTOP HERO BANNER
+            Hidden on mobile as per request
+            ========================================================================
+            -->
             <section class="relative mb-16 md:mb-32 group hidden md:block">
                 <div class="absolute -top-20 -left-20 w-64 h-64 bg-cyan-500 rounded-full hero-glow"></div>
                 <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-magenta-500 rounded-full hero-glow"></div>
                 
                 <div class="relative overflow-hidden rounded-[2rem] border-2 border-white/10 aspect-[21/9] bg-black">
+                    <!-- IMAGE: Main Hero Banner (Desktop Only) -->
                     <img src="https://i.imgur.com/OWGnL8y.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="CYBO Hero Banner">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
                     <div class="absolute bottom-10 left-10 max-w-2xl">
@@ -59,7 +172,12 @@
                 </div>
             </section>
 
-            <!-- ABOUT ME SECTION -->
+            <!-- 
+            ========================================================================
+            ABOUT ME SECTION
+            Mobile placement: 1st
+            ========================================================================
+            -->
             <section id="about" class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-16 md:mb-24 order-1 md:order-none">
                 <div class="lg:col-span-7 glass-card p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem]">
                     <div class="flex items-center gap-4 md:gap-6 mb-8 w-full">
@@ -74,7 +192,12 @@
                     </p>
                 </div>
                 
-                <!-- MY GOALS SECTION -->
+                <!-- 
+                ========================================================================
+                MY GOALS SECTION
+                Mobile placement: 2nd
+                ========================================================================
+                -->
                 <div id="goals" class="lg:col-span-5 bg-gradient-to-br from-magenta-600 to-purple-800 p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] flex flex-col justify-between order-2 md:order-none">
                     <div>
                         <iconify-icon icon="lucide:target" class="text-4xl md:text-5xl mb-6 text-white"></iconify-icon>
@@ -90,7 +213,12 @@
                 </div>
             </section>
 
-            <!-- CONNECT SECTION -->
+            <!-- 
+            ========================================================================
+            CONNECT SECTION
+            Mobile placement: 3rd (List style on mobile, Grid on desktop)
+            ========================================================================
+            -->
             <section id="connect" class="bg-white rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 text-black mb-16 md:mb-24 relative overflow-hidden order-3 md:order-last">
                 <div class="relative z-10">
                     <h2 class="font-display text-4xl md:text-8xl font-black tracking-tighter mb-8 md:mb-12 uppercase">
@@ -99,6 +227,7 @@
                     
                     <!-- LIST FOR MOBILE -->
                     <div class="flex flex-col gap-4 md:hidden">
+                        <!-- LINK: LinkedIn -->
                         <a href="https://www.linkedin.com/in/tejas-sharma-58299b360/" id="m-social-linkedin" target="_blank" class="flex items-center justify-between p-5 bg-gray-50 rounded-2xl border border-black/5 active:bg-blue-600 active:text-white transition-all group">
                             <div class="flex items-center gap-4 font-bold uppercase tracking-widest text-sm">
                                 <iconify-icon icon="mdi:linkedin" class="text-3xl text-blue-600 group-active:text-white"></iconify-icon>
@@ -106,6 +235,7 @@
                             </div>
                             <iconify-icon icon="lucide:arrow-right" class="opacity-30"></iconify-icon>
                         </a>
+                        <!-- LINK: Instagram -->
                         <a href="https://instagram.com/tejassharma.og" id="m-social-instagram" target="_blank" class="flex items-center justify-between p-5 bg-gray-50 rounded-2xl border border-black/5 active:bg-pink-500 active:text-white transition-all group">
                             <div class="flex items-center gap-4 font-bold uppercase tracking-widest text-sm">
                                 <iconify-icon icon="mdi:instagram" class="text-3xl text-pink-600 group-active:text-white"></iconify-icon>
@@ -113,6 +243,7 @@
                             </div>
                             <iconify-icon icon="lucide:arrow-right" class="opacity-30"></iconify-icon>
                         </a>
+                        <!-- LINK: X / Twitter -->
                         <a href="https://x.com/Cybo_94OG" id="m-social-x" target="_blank" class="flex items-center justify-between p-5 bg-gray-50 rounded-2xl border border-black/5 active:bg-black active:text-white transition-all group">
                             <div class="flex items-center gap-4 font-bold uppercase tracking-widest text-sm">
                                 <iconify-icon icon="ri:twitter-x-fill" class="text-3xl text-black group-active:text-white"></iconify-icon>
@@ -120,6 +251,7 @@
                             </div>
                             <iconify-icon icon="lucide:arrow-right" class="opacity-30"></iconify-icon>
                         </a>
+                        <!-- LINK: Discord -->
                         <a href="https://discord.com/users/cybo94" id="m-social-discord" target="_blank" class="flex items-center justify-between p-5 bg-gray-50 rounded-2xl border border-black/5 active:bg-[#5865F2] active:text-white transition-all group">
                             <div class="flex items-center gap-4 font-bold uppercase tracking-widest text-sm">
                                 <iconify-icon icon="ic:baseline-discord" class="text-3xl text-[#5865F2] group-active:text-white"></iconify-icon>
@@ -127,6 +259,7 @@
                             </div>
                             <iconify-icon icon="lucide:arrow-right" class="opacity-30"></iconify-icon>
                         </a>
+                        <!-- LINK: GitHub (Mobile Seamless) -->
                         <a href="https://github.com/Cybo-94" id="m-social-github" target="_blank" class="flex items-center justify-between p-5 bg-gray-50 rounded-2xl border border-black/5 active:bg-black active:text-white transition-all group">
                             <div class="flex items-center gap-4 font-bold uppercase tracking-widest text-sm">
                                 <iconify-icon icon="mdi:github" class="text-3xl text-black group-active:text-white"></iconify-icon>
@@ -134,13 +267,15 @@
                             </div>
                             <iconify-icon icon="lucide:arrow-right" class="opacity-30"></iconify-icon>
                         </a>
-                        <a href="https://www.reddit.com/user/Cybo_94OG/" id="m-social-reddit" target="_blank" class="flex items-center justify-between p-5 bg-gray-50 rounded-2xl border border-black/5 active:bg-[#FF4500] active:text-white transition-all group">
+                        <!-- LINK: Reddit (Mobile Seamless) -->
+                        <a href="https://www.reddit.com/user/Competitive-Cake4753/" id="m-social-reddit" target="_blank" class="flex items-center justify-between p-5 bg-gray-50 rounded-2xl border border-black/5 active:bg-[#FF4500] active:text-white transition-all group">
                             <div class="flex items-center gap-4 font-bold uppercase tracking-widest text-sm">
                                 <iconify-icon icon="mdi:reddit" class="text-3xl text-[#FF4500] group-active:text-white"></iconify-icon>
                                 Reddit
                             </div>
                             <iconify-icon icon="lucide:arrow-right" class="opacity-30"></iconify-icon>
                         </a>
+                        <!-- LINK: Moctale (Mobile Seamless) -->
                         <a href="https://www.moctale.in/u/Cybo_OG" id="m-social-moctale" target="_blank" class="flex items-center justify-between p-5 bg-gray-50 rounded-2xl border border-black/5 active:bg-gray-800 active:text-white transition-all group">
                             <div class="flex items-center gap-4 font-bold uppercase tracking-widest text-sm">
                                 <iconify-icon icon="lucide:external-link" class="text-3xl text-gray-800 group-active:text-white"></iconify-icon>
@@ -180,30 +315,37 @@
 
                     <!-- SECONDARY SOCIALS (DESKTOP ROW) -->
                     <div class="mt-12 md:mt-16 pt-8 md:pt-12 md:border-t md:border-black/10 flex flex-col md:flex-row justify-between items-center gap-8">
+                        <!-- DESKTOP EMAIL AREA -->
                         <div class="hidden md:flex flex-col">
                             <p class="text-[10px] uppercase font-bold tracking-[0.2em] opacity-40 mb-2">Direct Business</p>
                             <a href="mailto:cybo94.buisness@gmail.com" id="email-desktop-link" class="text-3xl font-display font-black hover:text-cyan-600 transition-colors">cybo94.buisness@gmail.com</a>
                         </div>
                         
-                        <div class="hidden md:flex items-center gap-8 opacity-60">
-                            <a href="https://github.com/Cybo-94" id="social-github-desktop" target="_blank" class="flex flex-col items-center hover:text-black transition-all">
-                                <iconify-icon icon="mdi:github" class="text-2xl mb-1"></iconify-icon>
-                                <span class="text-[9px] uppercase font-bold tracking-widest">GitHub</span>
-                            </a>
-                            <a href="https://www.reddit.com/user/Cybo_94OG/" id="social-reddit-desktop" target="_blank" class="flex flex-col items-center hover:text-[#FF4500] transition-all">
-                                <iconify-icon icon="mdi:reddit" class="text-2xl mb-1"></iconify-icon>
-                                <span class="text-[9px] uppercase font-bold tracking-widest">Reddit</span>
-                            </a>
-                            <a href="https://www.moctale.in/u/Cybo_OG" id="social-moctale-desktop" target="_blank" class="flex flex-col items-center hover:text-gray-800 transition-all">
-                                <iconify-icon icon="lucide:external-link" class="text-2xl mb-1"></iconify-icon>
-                                <span class="text-[9px] uppercase font-bold tracking-widest">Moctale</span>
-                            </a>
-                        </div>
+                        <!-- SMALL SOCIAL LINKS (DESKTOP) -->
+                    <div class="hidden md:flex items-center gap-8 opacity-60">
+                        <a href="https://github.com/Cybo-94" id="social-github-desktop" target="_blank" class="flex flex-col items-center hover:text-black transition-all">
+                            <iconify-icon icon="mdi:github" class="text-2xl mb-1"></iconify-icon>
+                            <span class="text-[9px] uppercase font-bold tracking-widest">GitHub</span>
+                        </a>
+                        <a href="https://www.reddit.com/user/Competitive-Cake4753/" id="social-reddit-desktop" target="_blank" class="flex flex-col items-center hover:text-[#FF4500] transition-all">
+                            <iconify-icon icon="mdi:reddit" class="text-2xl mb-1"></iconify-icon>
+                            <span class="text-[9px] uppercase font-bold tracking-widest">Reddit</span>
+                        </a>
+                        <a href="https://www.moctale.in/u/Cybo_OG" id="social-moctale-desktop" target="_blank" class="flex flex-col items-center hover:text-gray-800 transition-all">
+                            <iconify-icon icon="lucide:external-link" class="text-2xl mb-1"></iconify-icon>
+                            <span class="text-[9px] uppercase font-bold tracking-widest">Moctale</span>
+                        </a>
+                    </div>
                     </div>
                 </div>
             </section>
 
-            <!-- MINDSET & HOBBIES SECTION -->
+            <!-- 
+            ========================================================================
+            MINDSET & HOBBIES SECTION
+            Mobile placement: 4th (Mindset) then 5th (Hobbies)
+            ========================================================================
+            -->
             <section id="hobbies" class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-16 md:mb-24 order-4 md:order-none">
                 <div id="mindset" class="lg:col-span-4 glass-card p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] border-white/5">
                     <h2 class="font-display text-3xl md:text-4xl font-black mb-8 flex items-center gap-3 uppercase">
@@ -264,7 +406,13 @@
                 </div>
             </section>
 
-            <!-- MY FAVORITES SECTION -->
+            <!-- 
+            ========================================================================
+            MY FAVORITES SECTION
+            Mobile placement: 6th
+            Optimized grid for mobile: 2 per row then 3 per row
+            ========================================================================
+            -->
             <section id="favorites" class="mb-16 md:mb-32 order-6 md:order-none">
                 <div class="flex items-end justify-between mb-8 md:mb-12">
                     <div>
@@ -275,7 +423,9 @@
 
                 <!-- PRIMARY FAVORITES: 2 per row on mobile -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-4 md:mb-6">
+                    <!-- Favorite Item: Rockstar -->
                     <div class="favorite-item-card group relative h-60 md:h-80 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border border-white/10">
+                        <!-- IMAGE: Rockstar Movie -->
                         <img src="https://i.imgur.com/yQmkjqJ.jpeg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Rockstar">
                         <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
                         <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6 right-4 md:right-6">
@@ -283,7 +433,9 @@
                             <h3 class="text-lg md:text-2xl font-black font-display text-white uppercase">ROCKSTAR</h3>
                         </div>
                     </div>
+                    <!-- Favorite Item: Book -->
                     <div class="favorite-item-card group relative h-60 md:h-80 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border border-white/10">
+                        <!-- IMAGE: Harry Potter Book -->
                         <img src="https://i.imgur.com/0a4kHvT.jpeg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Harry Potter">
                         <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
                         <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6 right-4 md:right-6">
@@ -291,7 +443,9 @@
                             <h3 class="text-lg md:text-2xl font-black font-display text-white uppercase">Harry Potter</h3>
                         </div>
                     </div>
+                    <!-- Favorite Item: Game -->
                     <div class="favorite-item-card group relative h-60 md:h-80 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border border-white/10">
+                        <!-- IMAGE: AC II Game -->
                         <img src="https://i.imgur.com/AaFzFEB.jpeg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Assassin's Creed">
                         <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
                         <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6 right-4 md:right-6">
@@ -299,7 +453,9 @@
                             <h3 class="text-lg md:text-2xl font-black font-display text-white uppercase">AC ezio triology</h3>
                         </div>
                     </div>
+                    <!-- Favorite Item: Solo Leveling -->
                     <div class="favorite-item-card group relative h-60 md:h-80 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border border-white/10">
+                        <!-- IMAGE: Solo Leveling Anime -->
                         <img src="https://i.imgur.com/yaBbr9B.jpeg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Solo Leveling">
                         <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
                         <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6 right-4 md:right-6">
@@ -310,7 +466,7 @@
                 </div>
 
                 <!-- SECONDARY FAVORITES: 3 per row on mobile, 6 on desktop -->
-                <div class="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4">
+                <div class="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4" data-sd-id="105">
                     <div class="glass-card p-4 md:p-6 rounded-2xl md:rounded-3xl text-center">
                         <span class="text-xl md:text-2xl mb-1 block">🎵</span>
                         <div class="text-[8px] md:text-[10px] text-white/40 uppercase mb-1 truncate">Song</div>
@@ -346,7 +502,12 @@
 
         </main>
 
-        <!-- FOOTER SECTION -->
+        <!-- 
+        ========================================================================
+        FOOTER SECTION
+        Last placement
+        ========================================================================
+        -->
         <footer class="footer-full py-12 px-10 md:px-20 border-t border-white/10">
             <div class="max-w-[1440px] mx-auto">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
@@ -364,17 +525,114 @@
                 <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 text-gray-600 text-[10px] md:text-xs gap-4 uppercase tracking-widest">
                     <p>© 2025 CYBO. ALL RIGHTS RESERVED.</p>
                     <p class="hidden md:block">CRAFTED IN INDIA WITH CURIOSITY</p>
+                    <p class="text-[8px] md:text-[9px] tracking-widest md:ml-auto">BETA VERSION 0.1.3</p>
                 </div>
             </div>
         </footer>
 
-        <!-- MOBILE BACK TO TOP BUTTON -->
+        <!-- 
+        ========================================================================
+        MOBILE BACK TO TOP BUTTON
+        Visible only on mobile
+        ========================================================================
+        -->
         <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center md:hidden shadow-lg z-40 active:scale-90 transition-transform opacity-0 pointer-events-none">
             <iconify-icon icon="lucide:arrow-up" class="text-2xl"></iconify-icon>
         </button>
 
     </div>
 
-    <script src="main.js"></script>
-</body>
-</html>
+    <script>
+        // ------------------------------------------------------------
+        // SPLASH SCREEN LOGIC
+        // ------------------------------------------------------------
+        const splash = document.getElementById('mobile-splash');
+        const wrapper = document.getElementById('main-wrapper');
+        const continueBtn = document.getElementById('splash-continue');
+        const body = document.body;
+
+        // Check if mobile device view
+        const isMobile = window.innerWidth < 768;
+
+        if (isMobile) {
+            body.classList.add('mobile-splash-active');
+        }
+
+        continueBtn.addEventListener('click', () => {
+            splash.style.transition = 'opacity 1s ease, transform 1s ease';
+            splash.style.opacity = '0';
+            splash.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                splash.style.display = 'none';
+                wrapper.style.opacity = '1';
+                body.classList.remove('mobile-splash-active');
+            }, 1000);
+        });
+
+        // ------------------------------------------------------------
+        // REVEAL ANIMATIONS
+        // ------------------------------------------------------------
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+
+        // ------------------------------------------------------------
+        // PARALLAX EFFECT (DESKTOP)
+        // ------------------------------------------------------------
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            
+            // Hero Image Parallax
+            const heroImage = document.querySelector('.group img');
+            if(heroImage && !isMobile) {
+                heroImage.style.transform = `scale(1.05) translateY(${scrolled * 0.05}px)`;
+            }
+
+            // Back to top button visibility
+            const backToTop = document.getElementById('back-to-top');
+            if (scrolled > 500) {
+                backToTop.classList.add('opacity-100', 'pointer-events-auto');
+                backToTop.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                backToTop.classList.add('opacity-0', 'pointer-events-none');
+                backToTop.classList.remove('opacity-100', 'pointer-events-auto');
+            }
+        });
+
+        // ------------------------------------------------------------
+        // BACK TO TOP ACTION
+        // ------------------------------------------------------------
+        document.getElementById('back-to-top').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ------------------------------------------------------------
+        // CYBO EASTER EGG
+        // ------------------------------------------------------------
+        let keys = [];
+        document.addEventListener('keydown', (e) => {
+            keys.push(e.key.toLowerCase());
+            if (keys.length > 4) keys.shift();
+            if (keys.join('') === 'cybo') {
+                document.body.style.filter = 'hue-rotate(90deg)';
+                setTimeout(() => document.body.style.filter = 'none', 2000);
+            }
+        });
+    </script>
+
+</body></html>
