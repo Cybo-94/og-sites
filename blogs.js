@@ -14,6 +14,8 @@
  *   sources: [{ name: "Source name", link: "https://..." }]
  * }
  */
+// Make blogs array globally available
+window.blogs = window.blogs || [];
 
 const blogs = [
   {
